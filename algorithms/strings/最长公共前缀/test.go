@@ -3,7 +3,7 @@
  * @Description //TODO
  * @Data 2021/10/12 10:12 上午
  **/
-package longestCommonPrefix
+package 最长公共前缀
 
 func LongPrefix(strs []string) string {
 	if len(strs) == 0 {

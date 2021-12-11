@@ -24,8 +24,8 @@ func main() {
 }
 func lengthOfLastWord(s string) (ans int) {
 	index := len(s) - 1
+	//统计出所有字符的个数
 	for s[index] == ' ' {
-		//统计出所有字符的个数
 		index--
 	}
 	//反向遍历,只要遇到第一个空格,那么就找到了最后一个单词的长度
