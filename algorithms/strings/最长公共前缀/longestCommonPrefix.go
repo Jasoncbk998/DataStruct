@@ -3,7 +3,7 @@
  * @Description //TODO
  * @Data 2021/9/20 1:48 下午
  **/
-package longestCommonPrefix
+package 最长公共前缀
 
 /**
 输入：strs = ["flower","flow","flight"]
@@ -17,11 +17,11 @@ func LongestCommonPrefix(strs []string) string {
 	prefix := strs[0]
 	//判断数组长度
 	count := len(strs)
-	//开始循环
+	//开始循环,交替比较字符串
 	//因为默认取数组第一个元素,所以从第二个元素开始比较
 	//不断的循环比较
 	for i := 1; i < count; i++ {
-		//进行替换
+		//更新前缀
 		prefix = lcp(prefix, strs[i])
 		if len(prefix) == 0 {
 			break

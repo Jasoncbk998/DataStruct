@@ -16,9 +16,11 @@ func main() {
 func strStr(haystack string, needle string) int {
 	for i := 0; ; i++ {
 		for j := 0; ; j++ {
+			//开始就找到了
 			if j == len(needle) {
 				return i
 			}
+			//越界
 			if i+j == len(haystack) {
 				return -1
 			}

@@ -57,7 +57,7 @@ func main() {
 func myAtoi(s string) int {
 	length := len(s)
 	runes := []rune(s)
-
+	// 去除空格和其他字符
 	index := 0
 	for index < length && runes[index] == ' ' {
 		index++
@@ -73,6 +73,7 @@ func myAtoi(s string) int {
 		index++
 		sign = -1
 	}
+	//开始拼接
 	res := 0
 	for index < length {
 		currChar := runes[index]

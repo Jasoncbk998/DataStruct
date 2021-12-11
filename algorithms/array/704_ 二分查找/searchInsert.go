@@ -3,7 +3,7 @@
  * @Description //TODO
  * @Data 2021/9/20 1:26 下午
  **/
-package _1_searchInsert
+package _04__二分查找
 
 func SearchInsert(nums []int, target int) int {
 	//数组长度

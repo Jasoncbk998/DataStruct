@@ -6,13 +6,13 @@
 package main
 
 import (
-	"DataStruct/algorithms/strings/longestCommonPrefix"
+	"DataStruct/algorithms/strings/最长公共前缀"
 	"fmt"
 )
 
 func main() {
 	arr := []string{"flower", "flow", "flight"}
-	prefix := longestCommonPrefix.LongestCommonPrefix(arr)
+	prefix := 最长公共前缀.LongestCommonPrefix(arr)
 	fmt.Println(prefix)
 
 }

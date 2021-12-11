@@ -23,6 +23,8 @@ s = "egg", t = "add"
 输入：s = "foo", t = "bar"
 输出：false
 
+做一种映射,比如 e只对应a  如果e对应到其他字符 则认为不是同构
+
 */
 func isIsomorphic(s string, t string) bool {
 	s1 := map[byte]byte{}

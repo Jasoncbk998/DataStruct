@@ -17,7 +17,7 @@ import (
 */
 
 func main() {
-	path := "/Users/liuxu/GolandProjects/DataStruct/algorithms/array/01_searchInsert"
+	path := "/Users/liuxu/GolandProjects/DataStruct/algorithms/array/704_ 二分查找"
 	files := []string{}
 
 	queue := Queue.NewQueue()
