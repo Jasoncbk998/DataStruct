@@ -50,7 +50,7 @@ https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnoilh/
 由于 -91283472332 小于范围 [-231, 231 - 1] 的下界，最终结果被截断为 -231 = -2147483648
 */
 func main() {
-	s := "-91283472332"
+	s := "-91282"
 	atoi := myAtoi(s)
 	fmt.Println(atoi)
 }
@@ -90,4 +90,35 @@ func myAtoi(s string) int {
 		index++
 	}
 	return res
+}
+
+func etst(s string) int {
+	length := len(s)
+	runes := []rune(s)
+	index := 0
+	for index < length && runes[index] == ' ' {
+		index++
+	}
+	if index == length {
+		return 0
+	}
+	sign := 1
+	firstChar := runes[index]
+	if firstChar == '+' {
+		index++
+	} else if firstChar == '-' {
+		index++
+		sign = -1
+	}
+	res := 0
+	for index < length {
+		curChar := runes[index]
+		if curChar > '9' || curChar < '0' {
+			break
+		}
+		res = res*10 + sign*(int(curChar-'a'))
+		index++
+	}
+	return res
+
 }

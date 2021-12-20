@@ -13,93 +13,36 @@ Output: 3
 以此类推，每次移动需要计算当前长度，并判断是否需要更新最大长度，最终最大的值就是题目中的所求。
 */
 
-// 解法二 滑动窗口
+//   滑动窗口
 func lengthOfLongestSubstring1(s string) int {
 	if len(s) == 0 {
 		return 0
 	}
+	//码表
 	var freq [256]int
 	// left right 其实就是两个指针,进行记录次数,通过做差得知最大长度
 	result, left, right := 0, 0, -1
+	//从left开始寻找,依次比较
+	//没发现重复就,扩大右边界,发现重复就缩小左边界
 	for left < len(s) {
-		//出现一次,进行++ right++
+		//right+1 依次校验是否出现过
 		if right+1 < len(s) && freq[s[right+1]-'a'] == 0 {
 			freq[s[right+1]-'a']++
 			right++
 		} else {
-			//发现重复,则-- left++
+			//发现重复,则缩小左边界,进行left++
 			freq[s[left]-'a']--
 			left++
 		}
+		//每次元素都进行一次判断边界长度
 		result = max(result, right-left+1)
 	}
+	//需要一次遍历
 	return result
-}
-
-//位图
-func lengthOfLongestSubstring2(s string) int {
-	if len(s) == 0 {
-		return 0
-	}
-	var bitSet [256]bool
-	result, left, right := 0, 0, 0
-	for left < len(s) {
-		// 右侧字符对应的 bitSet 被标记 true，说明此字符在 X 位置重复，需要左侧向前移动，直到将 X 标记为 false
-		if bitSet[s[right]] {
-			bitSet[s[left]] = false
-			left++
-		} else {
-			bitSet[s[right]] = true
-			right++
-		}
-		if result < right-left {
-			result = right - left
-		}
-		if left+result >= len(s) || right >= len(s) {
-			break
-		}
-	}
-	return result
-}
-
-//滑动窗口-哈希桶
-func lengthOfLongestSubstring(s string) int {
-	right, left, res := 0, 0, 0
-	indexs := make(map[byte]int, len(s))
-	for left < len(s) {
-		if idx, ok := indexs[s[left]]; ok && idx >= right {
-			right = idx + 1
-		}
-		indexs[s[left]] = left
-		left++
-		res = max(res, left-right)
-	}
-	return res
 }
 func max(a int, b int) int {
 	if a > b {
 		return a
 	}
 	return b
-}
-
-func test(s string) int {
-	if len(s) == 0 {
-		return 0
-	}
-	result, left, right := 0, 0, -1
-	var freq [256]int
-	for left < len(s) {
-
-		if right+1 < len(s) && freq[s[right+1]-'a'] == 0 {
-			freq[s[right+1]-'a']++
-			right++
-		} else {
-			freq[s[left]-'a']--
-			left++
-		}
-		result = max(result, right+1-left)
-	}
-	return result
-
 }

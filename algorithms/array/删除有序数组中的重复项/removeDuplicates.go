@@ -3,7 +3,7 @@
  * @Description //TODO
  * @Data 2021/9/19 1:35 下午
  **/
-package 删除排序数组中的重复项
+package main
 
 /**
 
@@ -19,7 +19,7 @@ package 删除排序数组中的重复项
 你可以想象内部操作如下:
 
 // nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-int len = 删除排序数组中的重复项(nums);
+int len = 删除有序数组中的重复项(nums);
 
 // 在函数里修改输入数组对于调用者是可见的。
 // 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
@@ -32,11 +32,7 @@ print(nums[i]);
 解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。
 */
 
-/**
-快慢指针
-通过两个指针去比对大小
-*/
-// 快慢指针
+// 快慢指针 没什么难度
 func RemoveDuplicates(nums []int) int {
 	// arr长度
 	n := len(nums)
@@ -44,9 +40,6 @@ func RemoveDuplicates(nums []int) int {
 		return 0
 	}
 	slow := 1
-	// 循环
-	// 1 1 2 2 3 3
-	//因为是有序且重复的数组,所以相邻两位进行比较,如果不等则快慢指针进行赋值替换
 	for fast := 1; fast < n; fast++ {
 		// 后位比较前位,比较相邻两位是否相等
 		if nums[fast] != nums[fast-1] {
@@ -57,20 +50,4 @@ func RemoveDuplicates(nums []int) int {
 		}
 	}
 	return slow
-}
-
-func removeDuplicates1(nums []int) int {
-	length := len(nums)
-	slow := 1
-	if length == 0 {
-		return length
-	}
-	for fast := 1; fast < length; fast++ {
-		if nums[fast] != nums[fast-1] {
-			nums[slow] = nums[fast]
-			slow++
-		}
-	}
-	return slow
-
 }

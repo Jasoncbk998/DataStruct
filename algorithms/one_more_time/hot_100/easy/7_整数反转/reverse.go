@@ -27,3 +27,13 @@ func reverse(x int) int {
 	}
 	return res
 }
+
+func rev(x int) int {
+	res := 0
+	for x != 0 {
+		temp := x % 10 //
+		res = res*10 + temp
+		x /= 10
+	}
+	return res
+}

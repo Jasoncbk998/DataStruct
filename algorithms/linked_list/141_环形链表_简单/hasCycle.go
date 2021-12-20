@@ -43,31 +43,19 @@ func hasCycle3(head *ListNode) bool {
 这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。
 
 */
-func hasCycle2(head *ListNode) bool {
+func hasCycle(head *ListNode) bool {
 	if head == nil || head.Next == nil {
 		return false
 	}
+	//两个节点,一前一后,如果追上了,就是相等,则成环
 	slow, fast := head, head.Next
 	for fast != slow {
 		if fast == nil || fast.Next == nil {
 			return false
 		}
-		slow = slow.Next
+		slow = slow.Next //快指针,比慢指针快一步
 		fast = fast.Next.Next
 	}
 	return true
 
-}
-
-//hash表
-func hasCycle(head *ListNode) bool {
-	seen := map[*ListNode]struct{}{}
-	for head != nil {
-		if _, ok := seen[head]; ok {
-			return true
-		}
-		seen[head] = struct{}{}
-		head = head.Next
-	}
-	return false
 }

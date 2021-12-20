@@ -26,18 +26,20 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			n1 = l1.Val
 			l1 = l1.Next
 		}
+
 		if l2 == nil {
 			n2 = 0
 		} else {
 			n2 = l2.Val
 			l2 = l2.Next
 		}
+		// val是个位数 ,比如18 18%10=8
 		current.Next = &ListNode{Val: (n1 + n2 + carry) % 10}
 		current = current.Next
-		carry = (n1 + n2 + carry) / 10 //取出 十位
+		//取出 十位  18/10=1
+		carry = (n1 + n2 + carry) / 10
 	}
 	return head.Next
-
 }
 
 type ListNode struct {

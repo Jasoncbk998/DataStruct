@@ -17,7 +17,6 @@ package searching
 func Search(sortedArray []int, el int) int {
 	//一个数组分为两半
 	init, end := 0, len(sortedArray)-1
-
 	for init <= end {
 		//找到中间索引
 		middle := ((end - init) >> 1) + init

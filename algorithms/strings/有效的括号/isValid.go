@@ -39,8 +39,7 @@ func isValid(s string) bool {
 	//s = "()[]{}" true
 	// s = "{[]}" true
 	for i := 0; i < n; i++ {
-		//模拟栈
-		//在map中可以根据key取到对应value,则返回byteda大于0
+		//模拟栈,因为把括号存储在 map中,而且是成对出现的括号 ,那么不用考虑先后,只要匹配成功就--
 		if paris[s[i]] > 0 {
 			//判断栈
 			if len(stack) == 0 || stack[len(stack)-1] != paris[s[i]] {
@@ -55,4 +54,30 @@ func isValid(s string) bool {
 	}
 	//最终判断栈的长度是否等于0
 	return len(stack) == 0
+}
+
+func issss(s string) bool {
+	n := len(s)
+	if n%2 == 1 {
+		return false
+	}
+
+	paris := map[byte]byte{
+		')': '(',
+		'}': '{',
+		']': '[',
+	}
+	stack := []byte{}
+	for i := 0; i < n; i++ {
+		if paris[s[i]] > 0 {
+			if len(stack) == 0 || stack[len(stack)-1] != paris[s[i]] {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		} else {
+			stack = append(stack, s[i])
+		}
+	}
+	return len(stack) == 0
+
 }

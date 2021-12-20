@@ -124,7 +124,6 @@ func (bst *BinaryTree) preOrder(node *Node) {
 }
 
 //前序遍历,非递归
-
 func (bst *BinaryTree) PreOrderNoRecursion() []int {
 	mybst := bst.Root     //备份二叉树
 	mystack := list.New() //生成一个栈

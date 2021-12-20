@@ -12,7 +12,7 @@ import (
 
 func main() {
 	str := "A man, a plan, a canal: Panama"
-	palindrome := isPalindrome1(str)
+	palindrome := isPalindrome(str)
 	fmt.Println(palindrome)
 }
 
@@ -27,6 +27,7 @@ func isPalindrome(s string) bool {
 	var sgood string
 	//处理字符串,使其连贯
 	for i := 0; i < len(s); i++ {
+		//只匹配特定字符,进行新的拼接,将老string过滤到新string上
 		if isalnum(s[i]) {
 			sgood += string(s[i])
 		}
@@ -38,6 +39,10 @@ func isPalindrome(s string) bool {
 	//如果是回文串,那么均分后会相等
 	for i := 0; i < n/2; i++ {
 		//首位和末位进行比对,如果不相等则false
+		// a b c c b a
+		// 0 1 2 3 4 5
+		//len=6
+		// sgood[0]=a sgood[6-1-0]=a
 		if sgood[i] != sgood[n-1-i] {
 			return false
 		}
@@ -46,22 +51,4 @@ func isPalindrome(s string) bool {
 }
 func isalnum(ch byte) bool {
 	return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9')
-}
-
-func isPalindrome1(s string) bool {
-	var str string
-	for i := 0; i < len(s); i++ {
-		if isalnum(s[i]) {
-			str += string(s[i])
-		}
-	}
-	str = strings.ToLower(str)
-	n := len(str)
-
-	for i := 0; i < n/2; i++ {
-		if str[i] != str[n-1-i] {
-			return false
-		}
-	}
-	return true
 }

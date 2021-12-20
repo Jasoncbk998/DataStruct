@@ -5,6 +5,8 @@
  **/
 package main
 
+import "fmt"
+
 /**
 Input: s = "babad"
 Output: "bab"
@@ -27,29 +29,40 @@ func longestPalindrome(s string) string {
 
 }
 
-func longestPalindrome2(s string) string {
-	n := len(s)
-	if n < 2 {
-		return s
-	}
-	start, end := 0, 0
+func main() {
+	lines := longestPalindrome1("eeeabccbaccc")
+	fmt.Println(lines)
+}
 
-	for i := 0; i < n; {
-		l, r := i, i
-		//如果字符串相同则分别冲 一个和后一个开始回文
-		for r < n-1 && s[r] == s[r+1] {
-			r++
-		}
-		i = r + 1
-		for l > 0 && r < n-1 && s[l-1] == s[r+1] {
-			l--
-			r++
-		}
-		if end < r-l {
-			start = l
-			end = r - l
-		}
+// 滑动窗口
+func longestPalindrome1(s string) string {
+	if len(s) == 0 {
+		return ""
 	}
-	return s[start : start+end+1]
-
+	//left right 是寻找的左右边界,确定的最长回文子串的边界是pl和pr
+	//right=-1 是一个简单的技巧,-1开始,可以通过+1操作去找到索引位置是0的元素
+	left, right, pl, pr := 0, -1, 0, 0
+	//从左边界left开始循环
+	for left < len(s) {
+		// 移动到相同字母的最右边（如果有相同字母）,确定边界,left到right
+		//从left开始寻找,找到right的位置 (如果有相同字母的情况)
+		for right+1 < len(s) && s[left] == s[right+1] {
+			right++
+		}
+		// 在边界中找到回文的子串边界
+		//从左边界开始,left--与rigjt++进行比较,
+		//循环条件就是left-1>=0 right+1<len(s) 不能越界
+		for left-1 >= 0 && right+1 < len(s) && s[left-1] == s[right+1] {
+			left--
+			right++
+		}
+		//更新回文串子串边界
+		if right-left > pr-pl {
+			pl, pr = left, right
+		}
+		// 重置到下一次寻找回文的中心,更新边界
+		left = (left+right)/2 + 1
+		right = left
+	}
+	return s[pl : pr+1]
 }
