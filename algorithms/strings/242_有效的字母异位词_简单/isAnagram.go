@@ -16,8 +16,8 @@ package main
 */
 
 func isAnagram(s, t string) bool {
-	// 创建两个码表
-	// a的索引就是0,b是1 以此类推,c1[1]=1 就是a出现一次
+	//把两个字符串的字符都放到码表中
+	//然后每出现一次就++,进行比较即可
 	var c1, c2 [26]int
 	for _, ch := range s {
 		c1[ch-'a']++

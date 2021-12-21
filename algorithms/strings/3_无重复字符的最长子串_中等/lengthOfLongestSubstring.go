@@ -21,6 +21,8 @@ func main() {
 	//fmt.Println(  [256]bool{})
 
 }
+
+//双指针配合码表,进行夹逼
 func lengthOfLongestSubstring2(s string) int {
 	if len(s) == 0 {
 		return 0
