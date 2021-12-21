@@ -14,21 +14,8 @@ import "fmt"
 func main() {
 	ints := []int{1, 2, 3, 4, 5, 6, 7}
 	k := 3
-	rotate(ints, k)
+	rotate1(ints, k)
 	fmt.Println(ints)
-}
-
-//执行超时,太慢了
-func rotate(nums []int, k int) {
-	length := len(nums)
-	temp := 0
-	for i := 0; i < k; i++ {
-		temp = nums[length-1]
-		for j := length - 1; j < length && j > 0; j-- {
-			nums[j] = nums[j-1]
-		}
-		nums[0] = temp
-	}
 }
 
 func rotate1(nums []int, k int) {

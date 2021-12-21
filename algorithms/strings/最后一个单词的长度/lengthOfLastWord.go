@@ -22,8 +22,9 @@ func main() {
 	word := lengthOfLastWord(s)
 	fmt.Println(word)
 }
-func lengthOfLastWord(s string) (ans int) {
+func lengthOfLastWord(s string) int {
 	index := len(s) - 1
+	ans := 0
 	//统计出所有字符的个数
 	for s[index] == ' ' {
 		index--
@@ -34,5 +35,5 @@ func lengthOfLastWord(s string) (ans int) {
 		ans++
 		index--
 	}
-	return
+	return ans
 }

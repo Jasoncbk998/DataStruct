@@ -45,7 +45,6 @@ func myPow1(x float64, n int) float64 {
 			res *= multi
 		}
 	}
-
 	if isNeg {
 		res = 1 / res
 	}

@@ -5,8 +5,6 @@
  **/
 package main
 
-import "fmt"
-
 /**
 给你两个 没有重复元素 的数组nums1 和nums2,其中nums1是nums2的子集。
 请你找出 nums1中每个元素在nums2中的下一个比其大的值。
@@ -19,38 +17,6 @@ nums1中数字x的下一个更大元素是指x在nums2中对应位置的右边�
     对于 num1 中的数字 2 ，第二个数组中没有下一个更大的数字，因此输出 -1 。
 */
 
-func main() {
-
-	nums1 := []int{4, 1, 2}
-	nums2 := []int{1, 3, 4, 2}
-	element := nextGreaterElement1(nums1, nums2)
-	fmt.Println(element)
-
-}
-
-//单调栈 + 哈希表
-func nextGreaterElement(nums1 []int, nums2 []int) []int {
-	mp := map[int]int{}
-	stack := []int{}
-	for i := len(nums2) - 1; i >= 0; i-- {
-		num := nums2[i]
-		for len(stack) > 0 && num >= stack[len(stack)-1] {
-			stack = stack[:len(stack)-1]
-		}
-		if len(stack) > 0 {
-			mp[num] = stack[len(stack)-1]
-		} else {
-			mp[num] = -1
-		}
-		stack = append(stack, num)
-	}
-	res := make([]int, len(nums1))
-	for i, num := range nums1 {
-		res[i] = mp[num]
-	}
-	return res
-
-}
 func nextGreaterElement1(nums1 []int, nums2 []int) []int {
 	//先循环子集
 	for i, v1 := range nums1 {
@@ -60,11 +26,13 @@ func nextGreaterElement1(nums1 []int, nums2 []int) []int {
 			if v2 == v1 {
 				start = true
 			}
+			//寻找更大值,有则覆盖
 			if start && v2 > v1 {
 				nums1[i] = v2
 				break
 			}
 		}
+		//在nums2中没有更大值,则-1
 		if nums1[i] == v1 {
 			nums1[i] = -1
 		}

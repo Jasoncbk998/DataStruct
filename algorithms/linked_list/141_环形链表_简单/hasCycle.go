@@ -57,5 +57,4 @@ func hasCycle(head *ListNode) bool {
 		fast = fast.Next.Next
 	}
 	return true
-
 }

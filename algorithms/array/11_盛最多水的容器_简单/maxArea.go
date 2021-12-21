@@ -17,13 +17,15 @@ func main() {
 }
 
 //双指针,进行夹逼
-func maxArea2(height []int) int {
+func maxArea(height []int) int {
 	max := 0
 	for left, right := 0, len(height)-1; left < right; {
+		//每次移动指针,都去比较面积
 		area := Min(height[left], height[right]) * (right - left)
 		if area > max {
 			max = area
 		}
+		//总是移动数字较小的那个指针
 		if height[left] > height[right] {
 			right--
 		} else {
@@ -32,53 +34,9 @@ func maxArea2(height []int) int {
 	}
 	return max
 }
-func maxArea(height []int) int {
-	left, right := 0, len(height)-1
-	ans := 0
-	for left < right {
-		area := Min(height[left], height[right]) * (right - left)
-		ans = Max(ans, area)
-		if height[left] <= height[right] {
-			left++
-		} else {
-			right--
-		}
-	}
-	return ans
-}
-
-func Max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
 func Min(a, b int) int {
 	if a < b {
 		return a
 	}
 	return b
-}
-
-//
-func maxArea4(height []int) int {
-	max, start, end := 0, 0, len(height)-1
-	for start < end {
-		width := end - start
-		high := 0
-		//更新高,不断与宽相乘
-		if height[start] < height[end] {
-			high = height[start]
-			start++
-		} else {
-			high = height[end]
-			end--
-		}
-		temp := width * high
-		//max进行更新
-		if temp > max {
-			max = temp
-		}
-	}
-	return max
 }

@@ -1,20 +1,22 @@
 /**
  * @Author liuxu22
  * @Description //TODO
- * @Date 2021/11/24 7:09 下午
+ * @Date 2021/11/15 1:03 下午
  **/
 package main
 
 import "fmt"
 
 /**
-Input: s = "babad"
-Output: "bab"
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
 */
 
 func main() {
-	lines := longestPalindrome1("eeeabccbaccc")
-	fmt.Println(lines)
+	s := "babad"
+	palindrome := longestPalindrome1(s)
+	fmt.Println(palindrome)
 }
 
 // 滑动窗口
