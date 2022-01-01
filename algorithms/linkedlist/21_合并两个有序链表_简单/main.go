@@ -18,8 +18,6 @@ type ListNode struct {
 }
 
 func main() {
-	//l1 := &ListNode{1, &ListNode{3, &ListNode{5, nil}}}
-	//l2 := &ListNode{2, &ListNode{4, &ListNode{6, nil}}}
 	l1 := &ListNode{1, &ListNode{3, nil}}
 	l2 := &ListNode{2, &ListNode{4, nil}}
 	lists := mergeTwoLists(l1, l2)
@@ -32,7 +30,6 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	if l2 == nil {
 		return l1
 	}
-
 	if l1.Val < l2.Val {
 		l1.Next = mergeTwoLists(l1.Next, l2)
 		return l1

@@ -5,32 +5,18 @@
  **/
 package main
 
-import "fmt"
-
 /**
 01_两数之和_简单
 给一个数组,和一个目标值,找到数组内两个值和为目标值得数
 */
+//给一个数组,和一个目标值,找到数组内两个值和为目标值得数
 func Sum2Number(arr []int, target int) []int {
-	//构建map结构
-	hashTable := map[int]int{}
-	// 循环数组
-	// idx,value
-	for i, x := range arr {
-		fmt.Println(i, "--", x)
-		// 利用map的k-v结构,进行比对,查询
-		//p是索引,key存索引,value存的是值
-		if p, ok := hashTable[target-x]; ok {
-			return []int{p, i}
+	maps := map[int]int{}
+	for idx, value := range arr {
+		if v, ok := maps[target-value]; ok {
+			return []int{v, idx}
 		}
-		hashTable[x] = i
+		maps[value] = idx
 	}
 	return nil
-}
-
-func main() {
-	ints := []int{1, 2, 3, 4, 5}
-	number := Sum2Number(ints, 3)
-	fmt.Println(number)
-
 }

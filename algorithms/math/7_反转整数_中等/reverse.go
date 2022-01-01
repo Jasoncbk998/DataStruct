@@ -5,21 +5,10 @@
  **/
 package main
 
-import (
-	"fmt"
-)
-
-func main() {
-	i := reverse(123)
-	fmt.Println(i)
-}
-
 func reverse(x int) int {
 	res := 0
 	for x != 0 {
 		temp := x % 10 // 取末尾数字
-		//校验
-
 		if res > 214748364 || (res == 214748364 && temp > 7) {
 			return 0
 		}
