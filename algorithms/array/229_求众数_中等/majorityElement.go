@@ -5,34 +5,18 @@
  **/
 package main
 
-import "fmt"
-
 /**
 给定一个大小为 n 的整数数组，找出其中所有出现超过 ⌊ n/3 ⌋ 次的元素。
 输入：[3,2,3]
 输出：[3]
-
 输入：[1,1,1,3,3,2,2,2]
 输出：[1,2]
-
-输入：nums = [1]
-输出：[1]
-
 */
-func main() {
-
-	ints := []int{1, 1, 1, 3, 2, 2, 2}
-	fmt.Println(len(ints), len(ints)/3)
-	element := majorityElement(ints)
-	fmt.Println(element)
-}
-
 // 利用hash表
 func majorityElement(nums []int) []int {
 	ans := []int{}
 	cnt := map[int]int{}
 	for _, v := range nums {
-		//元素是value,key是次数
 		cnt[v]++
 	}
 	for v, c := range cnt {

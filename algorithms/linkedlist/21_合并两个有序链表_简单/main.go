@@ -24,6 +24,7 @@ func main() {
 	fmt.Println(lists)
 }
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+	// 边界限定,进行return
 	if l1 == nil {
 		return l2
 	}
