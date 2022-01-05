@@ -11,22 +11,8 @@ package main
 输入: [1,2,3,1]
 输出: true
 */
-// i与[i+1,len)进行全值比较
-func containsDuplicate(nums []int) bool {
-	length := len(nums)
-	for i := 0; i < length; i++ {
-		for j := i + 1; j < length; j++ {
-			//相同元素 ^运算结果=0 ,通过i!=j 控制不要比较同一个元素
-			if nums[i]^nums[j] == 0 {
-				return true
-			}
-		}
-	}
-	return false
-}
-
 //利用map 一次for
-func containsDuplicate4(nums []int) bool {
+func containsDuplicate(nums []int) bool {
 	m := make(map[int]int, len(nums))
 	for _, v := range nums {
 		if m[v] == 1 {

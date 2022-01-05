@@ -14,7 +14,7 @@ package main
 请注意，输入数组是以「引用」方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
 你可以想象内部操作如下:
 // nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-int len = 80_删除有序数组中的重复项_中等(nums);
+int len = 80_删除有序数组中的重复项_简单(nums);
 // 在函数里修改输入数组对于调用者是可见的。
 // 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
 for (int i = 0; i < len; i++) {
@@ -33,11 +33,10 @@ func RemoveDuplicates(nums []int) int {
 	}
 	slow := 1
 	for fast := 1; fast < n; fast++ {
-		// 后位比较前位,比较相邻两位是否相等
+		//找不相等,覆盖相等
+		//遇到相等的元素,则跳过,发现不相等,覆盖slow指针
 		if nums[fast] != nums[fast-1] {
-			//如果后位不等于前位,则把fast的值赋给slow
 			nums[slow] = nums[fast]
-			// slow 右移一位
 			slow++
 		}
 	}

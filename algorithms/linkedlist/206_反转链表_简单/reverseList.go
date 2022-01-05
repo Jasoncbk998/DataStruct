@@ -5,7 +5,9 @@
  **/
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val  int
@@ -20,10 +22,21 @@ func main() {
 		list = list.Next
 	}
 }
+func reverseList(head *ListNode) *ListNode {
+	var prev *ListNode
+	curr := head
+	for curr != nil {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+	return prev
+}
 
 // head = [3,2,1]
 // [1,2,3]
-func reverseList(head *ListNode) *ListNode {
+func reverseList_test(head *ListNode) *ListNode {
 	var prev *ListNode
 	curr := head
 	for curr != nil {
