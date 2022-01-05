@@ -22,27 +22,23 @@ func main() {
 
 }
 
-//双指针配合码表,进行夹逼
 func lengthOfLongestSubstring2(s string) int {
 	if len(s) == 0 {
 		return 0
 	}
 	var freq [256]int
+	//right和left交替记录出现次数,然后做减法
 	result, left, right := 0, 0, -1
+	//从左向右依次比对
 	for left < len(s) {
-		// 因为right 从-1开始
-		//因为byte索引是0开始,所以方便计算right=-1
-		// 比如aaaa 第一次进入freq++ 为1,right++ right=1
-		//第二次,ferq-- 为0 ,left++ left=1
-		//第三次,freq++ 为1
+		// right记录出现奇数次,如第一次,第三次
 		if right+1 < len(s) && freq[s[right+1]-'a'] == 0 {
 			//记录一次
 			//比如a出现2次,那么这里记录为第一次的记录
 			freq[s[right+1]-'a']++
 			right++
 		} else {
-			//记录第二次 or 第n次出现的次数
-			//每进入一次,数组就--
+			//left记录偶数次,如第二次出现,第三次
 			freq[s[left]-'a']--
 			left++
 		}
@@ -50,7 +46,6 @@ func lengthOfLongestSubstring2(s string) int {
 	}
 	return result
 }
-
 func Max(a int, b int) int {
 	if a > b {
 		return a
