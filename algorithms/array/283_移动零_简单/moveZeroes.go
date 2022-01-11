@@ -23,10 +23,10 @@ func moveZeroes(nums []int) {
 	//left代表为零
 	left, right, n := 0, 0, len(nums)
 	for right < n {
-		//遇到非零元素
+		//非零
 		if nums[right] != 0 {
-			//进行交换,right代表非零位置,left是为零位置
 			nums[left], nums[right] = nums[right], nums[left]
+			//因为对0进行换位,所以为零元素进行++
 			left++
 		}
 		//right为0,则++
