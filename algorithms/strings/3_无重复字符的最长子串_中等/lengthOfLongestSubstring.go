@@ -17,12 +17,13 @@ Output: 3
 Explanation: The answer is "abc", with the length of 3.
 */
 func main() {
-	fmt.Println(lengthOfLongestSubstring1("abcabcbb"))
-	//fmt.Println(  [256]bool{})
-
+	s := "abcaaaa"
+	fmt.Println(lengthOfLongestSubstring(s))
+	fmt.Println(test(s))
 }
 
-func lengthOfLongestSubstring2(s string) int {
+//滑动窗口
+func lengthOfLongestSubstring(s string) int {
 	if len(s) == 0 {
 		return 0
 	}
@@ -53,28 +54,21 @@ func Max(a int, b int) int {
 	return b
 }
 
-// 位图
-func lengthOfLongestSubstring1(s string) int {
+func test(s string) int {
 	if len(s) == 0 {
 		return 0
 	}
-	var bitSet [256]bool
+	var freq [256]int
 	result, left, right := 0, 0, 0
-	// right 记录无重复, left记录重复
 	for left < len(s) {
-		if bitSet[s[right]] {
-			bitSet[s[left]] = false
-			left++
-		} else {
-			bitSet[s[right]] = true
+		if right < len(s) && freq[s[right]-'a'] == 0 {
+			freq[s[right]-'a']++
 			right++
+		} else {
+			freq[s[left]-'a']--
+			left++
 		}
-		if result < right-left {
-			result = right - left
-		}
-		if left+result >= len(s) || right >= len(s) {
-			break
-		}
+		result = Max(result, right-left)
 	}
 	return result
 }

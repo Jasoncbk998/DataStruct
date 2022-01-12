@@ -13,6 +13,9 @@ func main() {
 
 }
 
+//  实现一个查找 substring 的函数。
+// 如果在母串中找到了子串，返回子串在母串中出现的下标，如果没有找到，返回 -1，如果子串是空串，则返回 0 。
+// haystack母串   needle子串
 func strStr(haystack string, needle string) int {
 	for i := 0; ; i++ {
 		for j := 0; ; j++ {
@@ -24,7 +27,7 @@ func strStr(haystack string, needle string) int {
 			if i+j == len(haystack) {
 				return -1
 			}
-			//开始寻找
+			//子串中从第一位开始找,发现相等继续在子循环中寻找,发现不相等直接跳出内层循环
 			if needle[j] != haystack[i+j] {
 				break
 			}

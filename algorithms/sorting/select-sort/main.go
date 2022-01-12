@@ -45,25 +45,20 @@ func selectSort(arr []int) []int {
 	length := len(arr)
 	if length <= 1 {
 		return arr
-	} else {
-		//nums := []int{5, 4, 3, 2, 1}
-		for i := 0; i < length-1; i++ { //只剩下一个元素不需要挑选
-			//极小值索引
-			min := i
-			//每次选出一个极小值
-			for j := i + 1; j < length; j++ {
-				if arr[min] > arr[j] {
-					min = j //保存极小值的索引
-				}
-			}
-			//换位
-			if i != min {
-				arr[i], arr[min] = arr[min], arr[i]
-			}
-			fmt.Println(arr)
-		}
-		return arr
 	}
+	for i := 0; i < length-1; i++ {
+		min := i
+		for j := i + 1; j < length; j++ {
+			if arr[min] > arr[j] {
+				min = j
+			}
+		}
+		if i != min {
+			arr[i], arr[min] = arr[min], arr[i]
+		}
+		fmt.Println(arr)
+	}
+	return arr
 }
 
 func SelectSortMax(arr []int) int {
