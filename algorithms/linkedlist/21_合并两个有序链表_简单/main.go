@@ -23,6 +23,8 @@ func main() {
 	lists := mergeTwoLists(l1, l2)
 	fmt.Println(lists)
 }
+
+//递归
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	// 边界限定,进行return
 	if l1 == nil {

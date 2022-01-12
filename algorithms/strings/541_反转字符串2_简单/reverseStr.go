@@ -8,13 +8,17 @@ package main
 /**
 输入：s = "abcdefg", k = 2
 输出："bacdfeg"
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-要求按照一定规则反转字符串：每 2 * K 长度的字符串，
+每 2 * K 长度的字符串，
 反转前 K 个字符，后 K 个字符串保持不变；
 对于末尾不够 2 * K 的字符串，如果长度大于 K，那么反转前 K 个字符串，剩下的保持不变。
 如果长度小于 K，则把小于 K 的这部分字符串全部反转。
-这一题是简单题，按照题意反转字符串即可。
 */
+
+func main() {
+	s := "abcdefg"
+	k := 2
+	reverseStr(s, k)
+}
 func reverseStr(s string, k int) string {
 	if k > len(s) {
 		k = len(s)
