@@ -5,8 +5,6 @@
  **/
 package main
 
-import "fmt"
-
 /**
 输入：nums1 = [1,2,2,1], nums2 = [2,2]
 输出：[2]
@@ -20,9 +18,9 @@ func intersection(nums1 []int, nums2 []int) []int {
 		m[n] = true
 	}
 	for _, n := range nums2 {
-		fmt.Println(n, m[n])
 		if m[n] {
 			delete(m, n)
+			//相交
 			res = append(res, n)
 		}
 	}

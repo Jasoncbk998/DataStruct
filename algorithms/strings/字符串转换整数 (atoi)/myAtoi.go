@@ -91,34 +91,3 @@ func myAtoi(s string) int {
 	}
 	return res
 }
-
-func etst(s string) int {
-	length := len(s)
-	runes := []rune(s)
-	index := 0
-	for index < length && runes[index] == ' ' {
-		index++
-	}
-	if index == length {
-		return 0
-	}
-	sign := 1
-	firstChar := runes[index]
-	if firstChar == '+' {
-		index++
-	} else if firstChar == '-' {
-		index++
-		sign = -1
-	}
-	res := 0
-	for index < length {
-		curChar := runes[index]
-		if curChar > '9' || curChar < '0' {
-			break
-		}
-		res = res*10 + sign*(int(curChar-'a'))
-		index++
-	}
-	return res
-
-}
