@@ -11,7 +11,7 @@ package main
 输入: [1,2,3,1]
 输出: true
 */
-//利用map 一次for
+//利用map 一次for,很简单
 func containsDuplicate(nums []int) bool {
 	m := make(map[int]int, len(nums))
 	for _, v := range nums {

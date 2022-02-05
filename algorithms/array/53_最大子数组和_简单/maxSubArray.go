@@ -13,6 +13,7 @@ package main
 */
 func maxSubArray(nums []int) int {
 	/**
+	因为连续,所在一个for循坏内
 	假设第一个元素为该数组的最大子序和 称max
 	然后将前两个元素的和与max 进行比较 如果大于max,则更新max
 	并且,当nums[i]以前的元素和大于nums[i]则会更新nums[i], 对应代码
@@ -23,13 +24,10 @@ func maxSubArray(nums []int) int {
 		if nums[i]+nums[i-1] > nums[i] {
 			nums[i] += nums[i-1]
 		}
+		//比对更新
 		if nums[i] > max {
 			max = nums[i]
 		}
 	}
 	return max
-}
-
-func main() {
-	maxSubArray([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4})
 }

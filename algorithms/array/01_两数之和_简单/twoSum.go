@@ -14,19 +14,10 @@ func Sum2Number(arr []int, target int) []int {
 	maps := map[int]int{}
 	for idx, value := range arr {
 		if v, ok := maps[target-value]; ok {
+			// value+v=target
 			return []int{v, idx}
 		}
-		maps[value] = idx
-	}
-	return nil
-}
-
-func test(arr []int, target int) []int {
-	maps := map[int]int{}
-	for idx, value := range arr {
-		if v, ok := maps[target-value]; ok {
-			return []int{v, idx}
-		}
+		//map中的k是value v是索引位置
 		maps[value] = idx
 	}
 	return nil

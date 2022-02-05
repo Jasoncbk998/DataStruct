@@ -31,8 +31,12 @@ func RemoveDuplicates(nums []int) int {
 	if n == 0 {
 		return 0
 	}
+	//slow是进行换位的指针
+	//fast是进行比较的指针
 	slow := 1
 	for fast := 1; fast < n; fast++ {
+		// 1 1 2 2 3 4 5
+		// 1 2 3 3 4
 		//找不相等,覆盖相等
 		//遇到相等的元素,则跳过,发现不相等,覆盖slow指针
 		if nums[fast] != nums[fast-1] {

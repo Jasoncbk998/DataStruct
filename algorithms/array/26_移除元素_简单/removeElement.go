@@ -8,16 +8,14 @@ package main
 /**
 nums= 3 2 2 3 val = 3 去除3
 */
-
 func RemoveElement(nums []int, val int) int {
-	//从最左边开始比较
-	left := 0
+	//标识符,从0开始对比
+	flag := 0
 	for _, v := range nums {
-		//进行覆盖,然后累加left
 		if v != val {
-			nums[left] = v
-			left++
+			nums[flag] = v
+			flag++
 		}
 	}
-	return left
+	return flag
 }

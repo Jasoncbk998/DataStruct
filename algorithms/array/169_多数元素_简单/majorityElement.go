@@ -22,6 +22,7 @@ func main() {
 func majorityElement(nums []int) int {
 	maps := make(map[int]int)
 	for _, v := range nums {
+		//依次添加至map中
 		maps[v]++
 		if maps[v] > len(nums)/2 {
 			return v
