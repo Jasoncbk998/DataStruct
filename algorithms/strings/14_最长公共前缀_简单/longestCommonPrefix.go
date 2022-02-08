@@ -29,6 +29,7 @@ func lcp(str1, str2 string) string {
 	length := min(len(str1), len(str2))
 	index := 0
 	for index < length && str1[index] == str2[index] {
+		//相同则++
 		index++
 	}
 	//前包后不包

@@ -21,20 +21,24 @@ func main() {
 	fmt.Println(lengthOfLongestSubstring(s))
 }
 
-//滑动窗口-哈希桶
-// aabcddac
+//滑动窗口
 func lengthOfLongestSubstring(s string) int {
-	right, left, res := 0, 0, 0
-	indexes := make(map[byte]int, len(s))
-	for left < len(s) {
-		if idx, ok := indexes[s[left]]; ok && idx >= right {
-			right = idx + 1
-		}
-		indexes[s[left]] = left
-		left++
-		res = max(res, left-right)
+	if len(s) == 0 {
+		return 0
 	}
-	return res
+	var freq [127]int
+	result, left, right := 0, 0, 0
+	for left < len(s) {
+		if right < len(s) && freq[s[right]] == 0 {
+			freq[s[right]]++
+			right++
+		} else {
+			freq[s[left]]--
+			left++
+		}
+		result = max(result, right-left)
+	}
+	return result
 }
 func max(a int, b int) int {
 	if a > b {

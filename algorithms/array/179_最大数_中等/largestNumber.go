@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	nums := []int{3, 30, 34, 5, 9}
+	nums := []int{3, 30, 34, 5, 9} // 9534330
 	str := largestNumber(nums)
 	fmt.Println(str)
 }
@@ -64,7 +64,9 @@ func largestNumber1(nums []int) string {
 	if len(nums) == 0 {
 		return ""
 	}
+	//int 2 string
 	numStrs := toStringArray(nums)
+	//快排
 	quickSortString(numStrs, 0, len(numStrs)-1)
 	res := ""
 	for _, str := range numStrs {
@@ -75,6 +77,15 @@ func largestNumber1(nums []int) string {
 	}
 	return res
 }
+func quickSortString(a []string, lo, hi int) {
+	if lo >= hi {
+		return
+	}
+	//对字符串进行分区操作
+	p := partitionString(a, lo, hi)
+	quickSortString(a, lo, p-1)
+	quickSortString(a, p+1, hi)
+}
 
 func toStringArray(nums []int) []string {
 	strs := make([]string, 0)
@@ -83,7 +94,9 @@ func toStringArray(nums []int) []string {
 	}
 	return strs
 }
+
 func partitionString(a []string, lo, hi int) int {
+	//默认最后一个字符是分段点
 	pivot := a[hi]
 	i := lo - 1
 	for j := lo; j < hi; j++ {
@@ -96,12 +109,4 @@ func partitionString(a []string, lo, hi int) int {
 	}
 	a[i+1], a[hi] = a[hi], a[i+1]
 	return i + 1
-}
-func quickSortString(a []string, lo, hi int) {
-	if lo >= hi {
-		return
-	}
-	p := partitionString(a, lo, hi)
-	quickSortString(a, lo, p-1)
-	quickSortString(a, p+1, hi)
 }
