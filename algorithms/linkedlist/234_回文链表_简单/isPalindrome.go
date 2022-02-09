@@ -30,6 +30,7 @@ func isPalindrome1(head *ListNode) bool {
 		slow = slow.Next
 		fast = fast.Next.Next
 	}
+
 	//这里在反转链表
 	//反转后半部分的链表,赋值到prev
 	var prev, cur *ListNode = nil, slow

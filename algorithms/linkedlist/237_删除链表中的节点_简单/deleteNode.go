@@ -5,13 +5,6 @@
  **/
 package main
 
-/**
- * Definition for singly-linkedlist list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
 //没有引用就等于删除,会对该对象进行回收
 func deleteNode(node *ListNode) {
 	node.Val = node.Next.Val

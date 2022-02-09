@@ -27,6 +27,21 @@ func removeElements(head *ListNode, val int) *ListNode {
 	}
 	return pp.Next
 }
+func test(head *ListNode, val int) *ListNode {
+	if head == nil {
+		return nil
+	}
+	temp := &ListNode{0, head}
+	pp := temp
+	for temp.Next != nil {
+		if temp.Next.Val == val {
+			temp.Next = temp.Next.Next
+		} else {
+			temp = temp.Next
+		}
+	}
+	return pp.Next
+}
 
 type ListNode struct {
 	Val  int

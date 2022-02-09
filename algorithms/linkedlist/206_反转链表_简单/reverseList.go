@@ -16,7 +16,7 @@ type ListNode struct {
 
 func main() {
 	l1 := &ListNode{3, &ListNode{2, &ListNode{1, nil}}}
-	list := reverseList(l1)
+	list := reverseList_test(l1)
 	for list != nil {
 		fmt.Print(list.Val, " ")
 		list = list.Next
