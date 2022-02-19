@@ -30,13 +30,3 @@ func majorityElement(nums []int) int {
 	}
 	return 0
 }
-func test(nums []int) int {
-	maps := make(map[int]int)
-	for _, v := range nums {
-		maps[v]++
-		if maps[v] > len(nums)/2 {
-			return v
-		}
-	}
-	return 0
-}

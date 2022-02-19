@@ -16,11 +16,6 @@ Input: "abcabcbb"
 Output: 3
 Explanation: The answer is "abc", with the length of 3.
 */
-func main() {
-	s := "abcaaaa"
-	fmt.Println(lengthOfLongestSubstring(s))
-}
-
 //滑动窗口
 func lengthOfLongestSubstring(s string) int {
 	if len(s) == 0 {
@@ -45,4 +40,29 @@ func max(a int, b int) int {
 		return a
 	}
 	return b
+}
+
+func main() {
+	s := "abcbb"
+	fmt.Println(lengthOfLongestSubstring2(s))
+}
+
+func lengthOfLongestSubstring2(s string) int {
+	m := map[byte]int{}
+	n := len(s)
+	right, ans := -1, 0
+	for i := 0; i < n; i++ {
+		if i != 0 {
+			delete(m, s[i-1])
+		}
+		//边界是 right+1<n 并且 map中不存在该元素
+		//一直添加到遇到重复的字符
+		for right+1 < n && m[s[right+1]] == 0 {
+			bytes := s[right+1]
+			m[bytes]++
+			right++
+		}
+		ans = max(ans, right-i+1)
+	}
+	return ans
 }

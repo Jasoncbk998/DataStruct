@@ -33,22 +33,3 @@ func sort(arr []int) {
 		arr[prev+1] = cur
 	}
 }
-
-func test(arr []int) {
-	// 5,4,3,2,1
-	for i := 1; i < len(arr); i++ {
-		//4
-		cur := arr[i]
-		//0
-		prev := i - 1
-		// 5>4
-		for prev >= 0 && arr[prev] > cur {
-			//arr[1]=arr[0]
-			//
-			arr[prev+1] = arr[prev]
-			prev = prev - 1
-		}
-		arr[prev+1] = cur
-	}
-
-}
