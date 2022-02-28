@@ -25,6 +25,7 @@ type ListNode struct {
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	head := &ListNode{Val: 0}
 	n1, n2, carry, current := 0, 0, 0, head
+	// 遍历所有的链表
 	for l1 != nil || l2 != nil || carry != 0 {
 		if l1 == nil {
 			n1 = 0
