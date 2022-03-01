@@ -10,6 +10,12 @@ func main() {
 }
 
 /**
+Input: 121
+Output: true
+
+Input: -121
+Output: false
+
 int%10 取个位
 int/10 百位边十位  十位变个位
 */
