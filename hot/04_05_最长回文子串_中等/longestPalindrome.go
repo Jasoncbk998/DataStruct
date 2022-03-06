@@ -16,13 +16,16 @@ func longestPalindrome(s string) string {
 		for right+1 < len(s) && s[left] == s[right+1] {
 			right++
 		}
+		// left向左移动,right像右移动
 		for left-1 >= 0 && right+1 < len(s) && s[left-1] == s[right+1] {
 			left--
 			right++
 		}
+		//比对范围进行限定回文边界
 		if right-left > pr-pl {
 			pl, pr = left, right
 		}
+		// 重置比较边界
 		left = (left+right)/2 + 1
 		right = left
 	}
