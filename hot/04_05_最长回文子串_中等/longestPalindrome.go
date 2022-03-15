@@ -12,7 +12,9 @@ func longestPalindrome(s string) string {
 		return ""
 	}
 	left, right, pl, pr := 0, -1, 0, 0
+	// 123 333 321
 	for left < len(s) {
+		//向右寻找重复
 		for right+1 < len(s) && s[left] == s[right+1] {
 			right++
 		}

@@ -25,7 +25,9 @@ func main() {
 // 解法一 最优解，双指针 + 排序
 func threeSum3(nums []int) [][]int {
 	sort.Ints(nums)
-	result, start, end, index, addNum, length := make([][]int, 0), 0, 0, 0, 0, len(nums)
+	result := make([][]int, 0)
+	start, end, index := 0, 0, 0
+	addNum, length := 0, len(nums)
 	//每次循环都用index作为第三个数字
 	for index = 1; index < length-1; index++ {
 		// 头和尾依次与index比较

@@ -10,8 +10,9 @@ func lengthOfLongestSubstring(s string) int {
 		return 0
 	}
 	var freq [127]int
-	// result记录无重复个数
-	//left 和right分别代表无重复个数&重复的个数
+	// 	result记录无重复个数
+	//	left 记录重复次数
+	// 	right记录无重复次数
 	result, left, right := 0, 0, 0
 	for left < len(s) {
 		// 从0开始比对
@@ -28,7 +29,6 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return result
 }
-
 func max(a, b int) int {
 	if a > b {
 		return a

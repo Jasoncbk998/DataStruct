@@ -22,7 +22,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		if l1 == nil {
 			n1 = 0
 		} else {
-			n1 = l2.Val
+			n1 = l1.Val
 			l1 = l1.Next
 		}
 		if l2 == nil {
