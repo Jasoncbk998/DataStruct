@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	slice := []int{2, 3, 5}
+	slice := []int{2, 3, 5, 58, 1, 3}
 	fmt.Println(slice)
 	ints := sort2(slice)
 	fmt.Println(ints)

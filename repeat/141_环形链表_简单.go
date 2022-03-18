@@ -6,9 +6,11 @@
 package main
 
 func hasCycle(head *ListNode) bool {
+	//头结点或者头结点的下一个节点是nil则false
 	if head == nil || head.Next == nil {
 		return false
 	}
+	// 快慢指针,快指针比满指针快一个节点,并且可以追上且不为nil则说明成环
 	fast := head
 	slow := head
 	for fast != nil && fast.Next != nil {

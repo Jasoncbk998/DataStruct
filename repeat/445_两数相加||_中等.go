@@ -19,6 +19,7 @@ func addTwoNumber(l1 *ListNode, l2 *ListNode) *ListNode {
 	dummyHead := &ListNode{}
 	head := dummyHead
 	carry := 0
+	// 有进位就要循环
 	for len(stack1) > 0 || len(stack2) > 0 || carry > 0 {
 		val := carry
 		if len(stack1) > 0 {
@@ -29,7 +30,9 @@ func addTwoNumber(l1 *ListNode, l2 *ListNode) *ListNode {
 			val = val + stack2[len(stack2)-1]
 			stack2 = stack2[:len(stack2)-1]
 		}
+		//11/10=1 进位是1
 		carry = val / 10
+		// 临时新节点
 		tmp := head.Next
 		head.Next = &ListNode{Val: val % 10, Next: tmp}
 	}

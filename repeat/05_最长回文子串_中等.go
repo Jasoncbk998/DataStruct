@@ -33,24 +33,3 @@ func longestPalindrome(s string) string {
 	}
 	return s[pl:pr]
 }
-
-func test(s string) string {
-	left, right, pl, pr := 0, 0, 0, 0
-
-	for left < len(s) {
-		for right+1 < len(s) && s[left] == s[right] {
-			right++
-		}
-		for left-1 >= 0 && right+1 < len(s) && s[left-1] == s[right+1] {
-			left--
-			right++
-		}
-		if right-left > pr-pl {
-			pr, pl = right, left
-		}
-		left = (left+right)/2 + 1
-		right = left
-	}
-	return s[pl:pr]
-
-}

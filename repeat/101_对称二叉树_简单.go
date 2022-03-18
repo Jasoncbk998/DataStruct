@@ -5,6 +5,7 @@
  **/
 package main
 
+// 对称二叉树,可以理解为对称
 func isSymmetric(root *TreeNode) bool {
 	if root == nil {
 		return true
@@ -12,6 +13,8 @@ func isSymmetric(root *TreeNode) bool {
 	return isMirror(root.Left, root.Right)
 }
 
+// 左边的值等于右边的值
+// 左子树向左向右寻找,右子树向左向右寻找
 func isMirror(left *TreeNode, right *TreeNode) bool {
 	if left == nil && right == nil {
 		return true
