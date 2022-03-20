@@ -5,7 +5,9 @@
  **/
 package main
 
-func hasCycle(head *ListNode) bool {
+import "DataStruct/tools"
+
+func hasCycle(head *tools.ListNode) bool {
 	//头结点或者头结点的下一个节点是nil则false
 	if head == nil || head.Next == nil {
 		return false

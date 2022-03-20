@@ -1,0 +1,39 @@
+/**
+ * @Author liuxu22
+ * @Description //TODO
+ * @Date 2022/3/6 7:33 下午
+ **/
+package tools
+
+import "fmt"
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func (listnode *ListNode) String() string {
+	var listString string
+	temp := listnode
+	//p := listnode.Next
+	if listnode.Val == 0 {
+		temp = listnode.Next
+	}
+	for temp != nil {
+		listString += fmt.Sprintf("%v-->", temp.Val)
+		temp = temp.Next
+	}
+	listString += fmt.Sprintf("nil")
+	return listString
+}
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+type Node struct {
+	Key, Val   int
+	Prev, Next *Node
+}

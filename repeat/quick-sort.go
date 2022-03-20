@@ -8,7 +8,6 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
 func main() {
@@ -16,39 +15,6 @@ func main() {
 	fmt.Println(slice)
 	ints := sort2(slice)
 	fmt.Println(ints)
-}
-func sort(arr []int, low, high int) []int {
-	if high > low {
-		privot := part(arr, low, high)
-		sort(arr, low, privot-1)
-		sort(arr, privot+1, high)
-	}
-	return arr
-}
-
-func part(arr []int, low, high int) int {
-	pivot := arr[low]
-	for low < high {
-		for low < high && pivot <= arr[high] {
-			high--
-		}
-		arr[low] = arr[high]
-		for low < high && pivot >= arr[low] {
-			low++
-		}
-		arr[high] = arr[low]
-	}
-	arr[low] = pivot
-	return low
-}
-
-func getRateSlice(size int) []int {
-	slice := make([]int, size, size)
-	rand.Seed(time.Now().UnixNano())
-	for i := 0; i < size; i++ {
-		slice[i] = rand.Intn(999) - rand.Intn(999)
-	}
-	return slice
 }
 
 func sort2(arr []int) []int {
@@ -79,4 +45,68 @@ func sort2(arr []int) []int {
 	}
 	recurse(0, len(arr))
 	return arr
+}
+
+func sort3(nums []int) []int {
+	// 荷兰国旗问题
+	netherlandsFlag := func(nums []int, l, r int) (start, end int) {
+		if l >= r {
+			return -1, -1
+		}
+		// 区间[l, less] 为小于主元的元素
+		less := l - 1
+		//区间[more,r]为大于主元的元素
+		more := r
+		i := l
+		//与大于区相遇时停止遍历
+		for i < more {
+			if nums[i] < nums[r] {
+				//小于区右扩,交换元素,i右移
+				less++
+				nums[less], nums[i] = nums[i], nums[less]
+				i++
+			} else if nums[i] > nums[r] {
+				//大于区左扩,交换元素,i不动
+				more--
+				nums[i], nums[more] = nums[more], nums[i]
+			} else if nums[i] == nums[r] {
+				//i 右移
+				i++
+			}
+		}
+		//将主元与大于区第一个元素交换
+		nums[more], nums[r] = nums[r], nums[more]
+		return less + 1, more
+	}
+	//插入排序
+	insertSort := func(nums []int) {
+		length := len(nums)
+		for i := 1; i < length; i++ {
+			temp := nums[i]
+			j := i
+			for j > 0 && nums[j-1] > temp {
+				nums[j] = nums[j-1]
+				j--
+			}
+			nums[j] = temp
+		}
+	}
+	var quickSort func(nums []int, l, r int)
+	quickSort = func(nums []int, l, r int) {
+		if l >= r {
+			return
+		}
+		//规模小于100 用插入排序
+		if r-l < 100 {
+			insertSort(nums[l : r+1])
+			return
+		}
+		p := rand.Intn(r-l+1) + l
+		nums[p], nums[r] = nums[r], nums[p]
+		start, end := netherlandsFlag(nums, l, r)
+		quickSort(nums, l, start-1)
+		quickSort(nums, end+1, r)
+	}
+	quickSort(nums, 0, len(nums)-1)
+	return nums
 }

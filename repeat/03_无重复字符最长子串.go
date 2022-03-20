@@ -25,13 +25,7 @@ func lengthOfLongestSubstring(s string) int {
 			freq[s[left]]--
 			left++
 		}
-		result = max(result, right-left)
+		result = Max(result, right-left)
 	}
 	return result
-}
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
