@@ -5,10 +5,12 @@
  **/
 package main
 
+import "DataStruct/tools"
+
 // head = [3,2,1]
 // [1,2,3]
-func reverseList_test(head *ListNode) *ListNode {
-	var prev *ListNode
+func reverseList(head *tools.ListNode) *tools.ListNode {
+	var prev *tools.ListNode
 	curr := head
 	for curr != nil {
 		next := curr.Next

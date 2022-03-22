@@ -12,6 +12,10 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func InitListNode() *ListNode {
+	return &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{4, &ListNode{5, nil}}}}}
+}
+
 func (listnode *ListNode) String() string {
 	var listString string
 	temp := listnode
