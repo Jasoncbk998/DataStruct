@@ -38,6 +38,7 @@ type TreeNode struct {
 }
 
 type Node struct {
-	Key, Val   int
+	Key, Val int
+	// 前 ,后
 	Prev, Next *Node
 }

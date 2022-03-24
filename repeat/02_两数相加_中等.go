@@ -5,6 +5,8 @@
  **/
 package main
 
+import "DataStruct/tools"
+
 /**
 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。
 请你将两个数相加，并以相同形式返回一个表示和的链表。
@@ -14,9 +16,9 @@ package main
 解释：342 + 465 = 807.
 */
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 	//头结点
-	head := &ListNode{Val: 0}
+	head := &tools.ListNode{Val: 0}
 	n1, n2, carry, current := 0, 0, 0, head
 	for l1 != nil || l2 != nil || carry != 0 {
 		if l1 == nil {
@@ -31,7 +33,8 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			n2 = l2.Val
 			l2 = l2.Next
 		}
-		current.Next = &ListNode{
+		current.Next = &tools.ListNode{
+			// 取出个位
 			Val: (n1 + n2 + carry) % 10,
 		}
 		current = current.Next
