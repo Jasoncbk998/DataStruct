@@ -5,6 +5,8 @@
  **/
 package main
 
+import "fmt"
+
 /**
 01_01_两数之和_简单
 给一个数组,和一个目标值,找到数组内两个值和为目标值得数
@@ -21,4 +23,8 @@ func Sum2Number(arr []int, target int) []int {
 		maps[value] = idx
 	}
 	return nil
+}
+
+func main() {
+	fmt.Println("aaaa")
 }
