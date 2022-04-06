@@ -27,8 +27,9 @@ func isValid(s string) bool {
 		']': '[',
 	}
 	stack := []byte{}
+	// 可以延展为判断一个成对出现的字符串
 	for i := 0; i < n; i++ {
-		//有
+		//map中有
 		if paris[s[i]] > 0 {
 			if paris[s[i]] == 0 || stack[len(stack)-1] != paris[s[i]] {
 				return false

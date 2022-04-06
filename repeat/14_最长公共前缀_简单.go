@@ -21,8 +21,9 @@ func longestCommonPrefix(strs []string) string {
 	for i := 0; i < len(strs[0]); i++ {
 		//内层循环是数组长度
 		for j := 1; j < len(strs); j++ {
-			//i == len(strs[j]) 说明i的长度至少等于j,所以可以return
+			//	i == len(strs[j]) 说明i的长度至少等于j,所以可以return
 			//  strs[i][j] != strs[0][i] 是纵向比对,数组中元素的j位字符
+			//理解纵向比对,由于依次比对
 			if i == len(strs[j]) || strs[j][i] != strs[0][i] {
 				return strs[0][:i]
 			}

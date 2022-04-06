@@ -38,6 +38,7 @@ func addTwoNumbers(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 			Val: (n1 + n2 + carry) % 10,
 		}
 		current = current.Next
+		// 123 /10 -> 12  三位数 退化为 两位数
 		carry = (n1 + n2 + carry) / 10
 	}
 	return head.Next

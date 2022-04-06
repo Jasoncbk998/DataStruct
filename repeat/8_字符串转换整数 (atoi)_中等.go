@@ -53,20 +53,27 @@ func main() {
 	s := "-91282"
 	atoi := myAtoi(s)
 	fmt.Println(atoi)
+	fmt.Println(byte('2' - '0'))
 }
+
+// 字符串数字转成整数
 func myAtoi(s string) int {
 	length := len(s)
 	runes := []rune(s)
 	// 去除空格和其他字符
 	index := 0
+	// 空格的数量
 	for index < length && runes[index] == ' ' {
 		index++
 	}
 	if index == length {
 		return 0
 	}
+	//正负号
 	sign := 1
+	//依次判断字符
 	firstChar := runes[index]
+	//正负号判断
 	if firstChar == '+' {
 		index++
 	} else if firstChar == '-' {
@@ -86,6 +93,7 @@ func myAtoi(s string) int {
 		if res < math.MinInt32/10 || (res == math.MinInt32/10 && (currChar-'0') > -(math.MinInt32%10)) {
 			return math.MinInt32
 		}
+		// 转换思路就是  字节-'0'
 		res = res*10 + sign*(int(currChar-'0'))
 		index++
 	}

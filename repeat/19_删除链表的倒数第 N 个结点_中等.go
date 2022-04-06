@@ -13,6 +13,7 @@ import "DataStruct/tools"
 输出：[1,2,3,5]
 */
 func removeNthFromEnd(head *tools.ListNode, n int) *tools.ListNode {
+	// 获取链表长度
 	length := getLength(head)
 	dummy := &tools.ListNode{0, head}
 	cur := dummy
@@ -20,7 +21,7 @@ func removeNthFromEnd(head *tools.ListNode, n int) *tools.ListNode {
 	for i := 0; i < length-n; i++ {
 		cur = cur.Next
 	}
-	// 开始删除该元素
+	// 开始删除该元素 从第n+1个元素'跨过去'
 	cur.Next = cur.Next.Next
 	return dummy.Next
 }
@@ -34,6 +35,7 @@ func getLength(head *tools.ListNode) int {
 }
 
 func main() {
+
 	node := &tools.ListNode{1, &tools.ListNode{2, &tools.ListNode{3, &tools.ListNode{4, &tools.ListNode{5, nil}}}}}
-	println(removeNthFromEnd(node, 2).String())
+	removeNthFromEnd(node, 2)
 }

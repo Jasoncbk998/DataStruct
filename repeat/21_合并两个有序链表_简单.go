@@ -10,6 +10,7 @@ import (
 	"fmt"
 )
 
+// 递归调用
 func mergeTwoLists(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 	if l1 == nil {
 		return l2
@@ -17,7 +18,9 @@ func mergeTwoLists(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 	if l2 == nil {
 		return l1
 	}
+	//不断递归
 	if l1.Val < l2.Val {
+		// l1的值小于l2时则l1.next
 		l1.Next = mergeTwoLists(l1.Next, l2)
 		return l1
 	}
