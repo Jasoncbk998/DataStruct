@@ -14,7 +14,7 @@ package main
 解释：需要合并 [1,2,3] 和 [2,5,6] 。
 合并结果是 [1,2,2,3,5,6] ，其中斜体加粗标注的为 nums1 中的元素。
 */
-func merge(nums1, nums2 []int, m, n int) {
+func mergeSoartArr(nums1, nums2 []int, m, n int) {
 	//不断循环比较,放到nums1后边
 	for m > 0 && n > 0 {
 		if nums1[m-1] >= nums2[n-1] {
