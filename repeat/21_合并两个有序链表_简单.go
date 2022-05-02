@@ -11,6 +11,10 @@ import (
 )
 
 // 递归调用
+/**
+输入：l1 = [1,2,4], l2 = [1,3,4]
+输出：[1,1,2,3,4,4]
+*/
 func mergeTwoLists(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
 	if l1 == nil {
 		return l2

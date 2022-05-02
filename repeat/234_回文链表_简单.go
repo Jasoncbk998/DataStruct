@@ -11,29 +11,42 @@ func isPalindromeListNode(head *tools.ListNode) bool {
 	if head == nil {
 		return true
 	}
-	//找到中间位置
-	fast, slow := head, head
-	for fast.Next != nil && fast.Next.Next != nil {
-		slow = slow.Next
-		fast = fast.Next.Next
-	}
-	//反转
-	var prev, cur *tools.ListNode = nil, slow
-	for cur != nil {
-		next := cur.Next
-		prev = cur
-		cur = next
-	}
-	// slow是后半部分链表
-	anthor := prev
-	p, q := head, anthor
-	for p != nil && p != anthor {
-		if p.Val != q.Val {
-			return false
-		} else {
-			p = p.Next
-			q = q.Next
+	firstHalfEnd := endOfFirstHalf(head)
+	secondHalfStart := reverseList(firstHalfEnd.Next)
+
+	p1 := head
+	p2 := secondHalfStart
+
+	result := true
+	for result && p2 != nil {
+		if p1.Val != p2.Val {
+			result = false
 		}
+		p1 = p1.Next
+		p2 = p2.Next
 	}
-	return true
+
+	firstHalfEnd.Next = reverseList(secondHalfStart)
+	return result
+}
+
+func reverseList(head *tools.ListNode) *tools.ListNode {
+	var prev, cur *tools.ListNode = nil, head
+	for cur != nil {
+		nextTmp := cur.Next
+		cur.Next = prev
+		prev = cur
+		cur = nextTmp
+	}
+	return prev
+}
+
+func endOfFirstHalf(head *tools.ListNode) *tools.ListNode {
+	fast := head
+	slow := head
+	for fast.Next != nil && fast.Next.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+	return slow
 }

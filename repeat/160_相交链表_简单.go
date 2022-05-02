@@ -7,7 +7,6 @@ package main
 
 import (
 	"DataStruct/tools"
-	"fmt"
 )
 
 /**
@@ -19,6 +18,9 @@ func getIntersectionNode(headA, headB *tools.ListNode) *tools.ListNode {
 	}
 	a := headA
 	b := headB
+	//不断比较节点
+	//A 1,1,2,3,4,5
+	//B 6,4,5
 	for a != b {
 		if a == nil {
 			a = headB
@@ -30,7 +32,7 @@ func getIntersectionNode(headA, headB *tools.ListNode) *tools.ListNode {
 		} else {
 			b = b.Next
 		}
-		fmt.Printf("a = %v b = %v\n", a, b)
+		//fmt.Printf("a = %v b = %v\n", a, b)
 	}
 	return a
 }

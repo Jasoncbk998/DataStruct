@@ -14,7 +14,8 @@ package main
 func maxArea(height []int) int {
 	max := 0
 	for left, right := 0, len(height)-1; left < right; {
-		// 每次移动两个指针,都要计算面积,然后进行比较
+		// 	每次移动两个指针,都要计算面积,然后进行比较
+		//	通过移动两个指针不断夹逼,判断最大面积
 		area := Min(height[left], height[right]) * (right - left)
 		if area > max {
 			max = area

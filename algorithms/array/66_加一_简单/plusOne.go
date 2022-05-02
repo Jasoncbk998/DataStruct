@@ -11,6 +11,8 @@ package main
 你可以假设除了整数 0 之外，这个整数不会以零开头。
 输入：digits = [1,2,3]
 输出：[1,2,4]
+
+引申,大数加减乘除
 */
 func plusOne(digits []int) []int {
 	//从后往前取出每一个数字

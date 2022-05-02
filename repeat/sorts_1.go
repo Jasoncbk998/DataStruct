@@ -79,7 +79,7 @@ func InsertionSort(a []int) {
 	}
 }
 
-//选择排序
+// SelectionSort 选择排序
 // 核心思路和插入排序很像,小范围找到最小值的索引值,然后交换,不断缩小比较范围,最后从局部有序到整体有序
 func SelectionSort(a []int) {
 	n := len(a)
@@ -88,12 +88,14 @@ func SelectionSort(a []int) {
 	}
 	for i := 0; i < n; i++ {
 		//查找最小值
-		minIndex := i
+		minIndex := i // 每次默认i是最小值的索引
+		// 在i+1 到n 的区间内寻找真正的最小值索引
 		for j := i + 1; j < n; j++ {
 			if a[j] < a[minIndex] {
 				minIndex = j
 			}
 		}
+		//寻找完后进行交换
 		a[i], a[minIndex] = a[minIndex], a[i]
 	}
 }
