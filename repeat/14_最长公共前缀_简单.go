@@ -17,7 +17,7 @@ func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {
 		return ""
 	}
-	//因为是最长公共子串,所以外层循环,就是第一个元素的字节长度
+	//因为是最长公共子串,所以外层循环,就是第一个元素的字节长度,纵向对比的思想一定要清晰
 	for i := 0; i < len(strs[0]); i++ {
 		//内层循环是数组长度
 		for j := 1; j < len(strs); j++ {

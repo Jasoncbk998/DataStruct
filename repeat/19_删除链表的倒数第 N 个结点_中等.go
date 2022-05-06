@@ -19,8 +19,7 @@ func removeNthFromEnd(head *tools.ListNode, n int) *tools.ListNode {
 	cur := dummy
 	//比如链表一共5个节点,我要删除第四个节点
 	// n就是2,也就是移动到第三个节点,然后cur.Next = cur.Next.Next
-	// 1,2,3,4,5 l=5,n=2 3
-	//
+	// 1,2,3,4,5  l=5,n=2 3
 	for i := 0; i < length-n; i++ {
 		cur = cur.Next
 	}
@@ -31,6 +30,8 @@ func removeNthFromEnd(head *tools.ListNode, n int) *tools.ListNode {
 
 func getLength(head *tools.ListNode) int {
 	length := 0
+	// 循环边界 head!=nil
+	// 递进  head=heda.Next
 	for ; head != nil; head = head.Next {
 		length++
 	}

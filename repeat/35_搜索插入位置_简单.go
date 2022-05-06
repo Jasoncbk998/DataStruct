@@ -20,7 +20,7 @@ func searchInsert(nums []int, target int) int {
 	for left <= right {
 		mid := left + (right-left)>>1
 		// 目标值在右边则移动左边界,反之移动右边界
-		if target >= nums[mid] {
+		if target <= nums[mid] {
 			ans = mid // 位置
 			right = mid - 1
 		} else {
