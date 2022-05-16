@@ -1,9 +1,17 @@
 /**
  * @Author liuxu22
  * @Description //TODO
- * @Date 2022/4/17 19:26
+ * @Date 2022/5/12 13:19
  **/
 package main
+
+import "fmt"
+
+func main() {
+	arr := []int{5, 4, 3, 2, 1, 55, 33, 55, 88, 54, 21, 46}
+	MergeSort(arr)
+	fmt.Println(arr)
+}
 
 func MergeSort(arr []int) {
 	arrLen := len(arr)
@@ -13,7 +21,8 @@ func MergeSort(arr []int) {
 	mergeSort(arr, 0, arrLen-1)
 }
 
-func mergeSort(arr []int, start int, end int) {
+// 递推公式
+func mergeSort(arr []int, start, end int) {
 	if start >= end {
 		return
 	}
@@ -22,12 +31,12 @@ func mergeSort(arr []int, start int, end int) {
 	mergeSort(arr, mid+1, end)
 	merge(arr, start, mid, end)
 }
+
 func merge(arr []int, start, mid, end int) {
 	tmpArr := make([]int, end-start+1)
 	i := start
 	j := mid + 1
 	k := 0
-
 	for ; i <= mid && j <= end; k++ {
 		if arr[i] <= arr[j] {
 			tmpArr[k] = arr[i]
@@ -37,12 +46,9 @@ func merge(arr []int, start, mid, end int) {
 			j++
 		}
 	}
+
 	for ; i <= mid; i++ {
 		tmpArr[k] = arr[i]
-		k++
-	}
-	for ; j <= end; j++ {
-		tmpArr[k] = arr[j]
 		k++
 	}
 	for ; j <= end; j++ {

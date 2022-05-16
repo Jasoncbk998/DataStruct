@@ -90,6 +90,9 @@ func SelectionSort(a []int) {
 		//查找最小值
 		minIndex := i // 每次默认i是最小值的索引
 		// 在i+1 到n 的区间内寻找真正的最小值索引
+		// 外层循环从0开始,然后从[0,n]找到最小值,放到0号位置
+		// 然后外层从1开始,在从[1,n]中寻找到最小值,放到1号位置
+		// 往复
 		for j := i + 1; j < n; j++ {
 			if a[j] < a[minIndex] {
 				minIndex = j

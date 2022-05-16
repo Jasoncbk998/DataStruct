@@ -18,18 +18,14 @@ func main() {
 	moveZeroes(ints)
 	fmt.Println(ints)
 }
+
 func moveZeroes(nums []int) {
-	//right代表非零
-	//left代表为零
-	left, right, n := 0, 0, len(nums)
-	for right < n {
-		//非零
-		if nums[right] != 0 {
-			nums[left], nums[right] = nums[right], nums[left]
-			//因为对0进行换位,所以为零元素进行++
-			left++
+	idx := 0 // 为0元素
+	// 5,0,0,1
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != 0 {
+			nums[i], nums[idx] = nums[idx], nums[i]
+			idx += 1
 		}
-		//right为0,则++
-		right++
 	}
 }

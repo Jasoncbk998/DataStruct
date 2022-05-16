@@ -24,3 +24,19 @@ func hasCycle(head *tools.ListNode) bool {
 	}
 	return false
 }
+
+func hasCycle_(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+	fast := head
+	slow := head
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+		if fast == slow {
+			return true
+		}
+	}
+	return false
+}

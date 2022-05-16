@@ -14,3 +14,14 @@ func reverse(x int) int {
 	}
 	return result
 }
+
+func reverse_(x int) int {
+	result := 0
+	// 123
+	for x != 0 {
+		temp := x % 10
+		x /= 10
+		result = result*10 + temp
+	}
+	return result
+}
