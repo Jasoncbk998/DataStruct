@@ -19,6 +19,7 @@ func isBalanced(root *tools.TreeNode) bool {
 	return math.Abs(float64(leftHeight-rightHeight)) <= 1 && isBalanced(root.Left) && isBalanced(root.Right)
 }
 
+// 不断递归,求得深度
 func depth(root *tools.TreeNode) int {
 	if root == nil {
 		return 0

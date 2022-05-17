@@ -7,53 +7,63 @@ package main
 
 import "fmt"
 
-func main() {
-	arr := []int{5, 4, 3, 2, 1, 55, 33, 55, 88, 54, 21, 46}
-	MergeSort(arr)
-	fmt.Println(arr)
-}
-
-func MergeSort(arr []int) {
-	arrLen := len(arr)
-	if arrLen <= 1 {
-		return
+// 归并排序
+func mergeSort(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
 	}
-	mergeSort(arr, 0, arrLen-1)
+
+	// 获取分区位置
+	p := len(nums) / 2
+	// 通过递归分区
+	left := mergeSort(nums[0:p])
+	right := mergeSort(nums[p:])
+	// 排序后合并
+	return merge(left, right)
 }
 
-// 递推公式
-func mergeSort(arr []int, start, end int) {
-	if start >= end {
-		return
-	}
-	mid := (start + end) / 2
-	mergeSort(arr, start, mid)
-	mergeSort(arr, mid+1, end)
-	merge(arr, start, mid, end)
-}
-
-func merge(arr []int, start, mid, end int) {
-	tmpArr := make([]int, end-start+1)
-	i := start
-	j := mid + 1
-	k := 0
-	for ; i <= mid && j <= end; k++ {
-		if arr[i] <= arr[j] {
-			tmpArr[k] = arr[i]
+// 排序合并
+// 这个很好理解
+func merge(left []int, right []int) []int {
+	i, j := 0, 0
+	m, n := len(left), len(right)
+	// 用于存放结果集
+	var result []int
+	for {
+		// 任何一个区间遍历完，则退出
+		if i >= m || j >= n {
+			break
+		}
+		// 对所有区间数据进行排序
+		if left[i] <= right[j] {
+			result = append(result, left[i])
 			i++
 		} else {
-			tmpArr[k] = arr[j]
+			result = append(result, right[j])
 			j++
 		}
 	}
 
-	for ; i <= mid; i++ {
-		tmpArr[k] = arr[i]
-		k++
+	// 如果左侧区间还没有遍历完，将剩余数据放到结果集
+	if i != m {
+		for ; i < m; i++ {
+			result = append(result, left[i])
+		}
 	}
-	for ; j <= end; j++ {
-		tmpArr[k] = arr[j]
-		k++
+
+	// 如果右侧区间还没有遍历完，将剩余数据放到结果集
+	if j != n {
+		for ; j < n; j++ {
+			result = append(result, right[j])
+		}
 	}
-	copy(arr[start:end+1], tmpArr)
+
+	// 返回排序后的结果集
+	return result
+}
+
+func main() {
+	nums := []int{4, 5, 6, 7, 8, 3, 2, 1}
+	sortedNums := mergeSort(nums)
+	fmt.Println(sortedNums)
 }
