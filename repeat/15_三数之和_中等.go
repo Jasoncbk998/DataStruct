@@ -16,42 +16,49 @@ func main() {
 	fmt.Println(sum)
 }
 
-/**
-三数之和等于0
-第二重循环枚举到的元素不小于当前第一重循环枚举到的元素；
-
-第三重循环枚举到的元素不小于当前第二重循环枚举到的元素。
-*/
+//	输入：nums = [-1,0,1,2,-1,-4]
+//	输出：[[-1,-1,2],[-1,0,1]]
+// 	双指针+排序
 func threeSum(nums []int) [][]int {
-	n := len(nums)
-	sort.Ints(nums)
-	ans := make([][]int, 0)
-	// 枚举a
-	for first := 0; first < n; first++ {
-		if first > 0 && nums[first] == nums[first-1] {
-			continue
+	//nums = [-1,0,1,2,-1,-4]
+	sort.Ints(nums) //有序
+	// -4,-1,-1,0,1,2
+	result, length := make([][]int, 0), len(nums)
+	addNum := 0
+	start, end := 0, 0
+	index := 0
+	// index从序号1开始
+	// 每次分别与start,end 进行求和比较
+	for index = 1; index < length-1; index++ {
+		start, end = 0, length-1
+		// 重复数字
+		if index > 1 && nums[index] == nums[index-1] {
+			start = index - 1
 		}
-		// c 对应的指针初始指向数组的最右端
-		third := n - 1
-		target := -1 * nums[first]
-		// 枚举 b
-		for second := first + 1; second < n; second++ {
-			// 保证和上一次枚举的数不相同
-			if second > first+1 && nums[second] == nums[second-1] {
+		//头,中,尾 三数进行求和比较
+		for start < index && end > index {
+			//相同则下一位
+			if start > 0 && nums[start] == nums[start-1] {
+				start++
 				continue
 			}
-			// 需要报咋整b的指针在c指针左侧
-			for second < third && nums[second]+nums[third] > target {
-				third--
+			if end < length-1 && nums[end] == nums[end+1] {
+				end--
+				continue
 			}
-			//如果指针重合,随着b后续的增加
-			if second == third {
-				break
-			}
-			if nums[second]+nums[third] == target {
-				ans = append(ans, []int{nums[first], nums[second], nums[third]})
+
+			// 求和
+			addNum = nums[start] + nums[end] + nums[index]
+			if addNum == 0 {
+				result = append(result, []int{nums[start], nums[index], nums[end]})
+				start++
+				end--
+			} else if addNum > 0 {
+				end--
+			} else {
+				start++
 			}
 		}
 	}
-	return ans
+	return result
 }
