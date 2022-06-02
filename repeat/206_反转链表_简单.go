@@ -27,12 +27,16 @@ func reverseList_(head *ListNode) *ListNode {
 	// 1,2,3,4,5
 	for cur != nil {
 		// 2,3,4,5
+		// 3,4,5
 		next := cur.Next
 		// 1,nil
+		// 2,1,nIl
 		cur.Next = temp
 		// 1,nil
+		// 2,1,nil
 		temp = cur
 		// 2,3,4,5
+		//3,4,5
 		cur = next
 	}
 	return temp

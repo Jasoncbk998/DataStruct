@@ -16,7 +16,6 @@ import "DataStruct/tools"
 func merge_node(head1, head2 *tools.ListNode) *tools.ListNode {
 	dummyHead := &tools.ListNode{}
 	temp, temp1, temp2 := dummyHead, head1, head2
-
 	for temp1 != nil && temp2 != nil {
 		if temp1.Val <= temp2.Val {
 			temp.Next = temp1
