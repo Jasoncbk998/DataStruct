@@ -56,9 +56,11 @@ func (c *Consistent) Add(node string, virtualNodeCount int) error {
 	}
 
 	//虚拟结点排序
-	sort.Slice(c.hashSortedNodes, func(i, j int) bool {
-		return c.hashSortedNodes[i] < c.hashSortedNodes[j]
-	})
+	sort.Slice(c.hashSortedNodes,
+		func(i, j int) bool {
+			return c.hashSortedNodes[i] < c.hashSortedNodes[j]
+		},
+	)
 
 	return nil
 }

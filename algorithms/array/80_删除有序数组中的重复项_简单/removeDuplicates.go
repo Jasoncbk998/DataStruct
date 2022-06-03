@@ -46,19 +46,3 @@ func RemoveDuplicates(nums []int) int {
 	}
 	return slow
 }
-
-func test(arr []int) int {
-	n := len(arr)
-	if n == 0 {
-		return 0
-	}
-	slow := 1
-	for fast := 1; fast < n; fast++ {
-		// 1 2 2 3 3 4
-		if arr[fast] != arr[fast-1] {
-			arr[slow] = arr[fast]
-			slow++
-		}
-	}
-	return slow
-}

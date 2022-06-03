@@ -20,26 +20,33 @@ candidates 中的 同一个 数字可以 无限制重复被选取 。如果至�
 2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
 7 也是一个候选， 7 = 7 。
 仅有这两种组合。
-*/func combinationSum(candidates []int, target int) (ans [][]int) {
-	comb := []int{}
-	var dfs func(target, idx int)
-	dfs = func(target, idx int) {
-		if idx == len(candidates) {
-			return
-		}
-		if target == 0 {
-			ans = append(ans, append([]int(nil), comb...))
-			return
-		}
-		// 直接跳过
-		dfs(target, idx+1)
-		// 选择当前数
-		if target-candidates[idx] >= 0 {
-			comb = append(comb, candidates[idx])
-			dfs(target-candidates[idx], idx)
-			comb = comb[:len(comb)-1]
-		}
+*/
+var res [][]int
+
+func combinationSum(candidates []int, target int) [][]int {
+	res = make([][]int, 0)
+	find(candidates, target, []int{}, 0)
+	return res
+}
+
+func find(candidates []int, target int, oneRes []int, start int) {
+	sum := 0
+	for _, val := range oneRes {
+		sum += val
 	}
-	dfs(target, 0)
-	return
+	if sum > target {
+		return
+	}
+	if sum == target {
+		copyArr := make([]int, len(oneRes))
+		copy(copyArr, oneRes)
+		res = append(res, copyArr)
+		return
+	}
+
+	for i := start; i < len(candidates); i++ {
+		oneRes = append(oneRes, candidates[i])
+		find(candidates, target, oneRes, i) //再从i位置开始找可能组合
+		oneRes = oneRes[:len(oneRes)-1]
+	}
 }

@@ -11,6 +11,7 @@ package main
 把数组一的每个数字都存进字典中，然后在数组二中依次判断字典中是否存在，如果存在，在字典中删除它(因为输出要求只输出一次)
 */
 func intersection(nums1 []int, nums2 []int) []int {
+	// 码表
 	m := map[int]bool{}
 	var res []int
 	//nums1 加入到字典中
