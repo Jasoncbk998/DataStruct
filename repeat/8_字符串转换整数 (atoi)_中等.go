@@ -8,6 +8,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strings"
 )
 
 /*
@@ -53,49 +54,32 @@ func main() {
 	s := "-91282"
 	atoi := myAtoi(s)
 	fmt.Println(atoi)
-	fmt.Println(byte('2' - '0'))
+	fmt.Println(byte('2' - '2'))
 }
 
 // 字符串数字转成整数
 func myAtoi(s string) int {
-	length := len(s)
-	runes := []rune(s)
-	// 去除空格和其他字符
-	index := 0
-	// 空格的数量
-	for index < length && runes[index] == ' ' {
-		index++
-	}
-	if index == length {
-		return 0
-	}
-	//正负号
+	str := strings.TrimSpace(s)
+	result := 0
 	sign := 1
-	//依次判断字符
-	firstChar := runes[index]
-	//正负号判断
-	if firstChar == '+' {
-		index++
-	} else if firstChar == '-' {
-		index++
-		sign = -1
-	}
-	//开始拼接
-	res := 0
-	for index < length {
-		currChar := runes[index]
-		if currChar > '9' || currChar < '0' {
+	for i, v := range str {
+		if v >= '0' && v <= '9' {
+			result = result*10 + int(v-'0')
+
+		} else if v == '-' && i == 0 {
+			sign = -1
+		} else if v == '+' && i == 0 {
+			sign = 1
+		} else {
 			break
 		}
-		if res > math.MaxInt32/10 || (res == math.MaxInt32/10 && (currChar-'0') > math.MaxInt32%10) {
+		if result > math.MaxInt32 {
+			if sign == -1 {
+				return math.MinInt32
+			}
 			return math.MaxInt32
 		}
-		if res < math.MinInt32/10 || (res == math.MinInt32/10 && (currChar-'0') > -(math.MinInt32%10)) {
-			return math.MinInt32
-		}
-		// 转换思路就是  字节-'0'
-		res = res*10 + sign*(int(currChar-'0'))
-		index++
+
 	}
-	return res
+	return sign * result
 }
