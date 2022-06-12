@@ -16,6 +16,7 @@ import (
 输出：[1,1,2,3,4,4]
 */
 func mergeTwoLists(l1 *tools.ListNode, l2 *tools.ListNode) *tools.ListNode {
+	// 跳出递归
 	if l1 == nil {
 		return l2
 	}
@@ -37,29 +38,4 @@ func main() {
 	l2 := &tools.ListNode{2, &tools.ListNode{4, nil}}
 	s := mergeTwoLists(l1, l2).String()
 	fmt.Println(s)
-}
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-/**
-[1,2,4]
-[1,3,4]
-*/
-func mergeTwoLists_(list1 *ListNode, list2 *ListNode) *ListNode {
-	if list1 == nil {
-		return list2
-	}
-	if list2 == nil {
-		return list1
-	}
-
-	if list1.Val < list2.Val {
-		list1.Next = mergeTwoLists_(list1, list2.Next)
-		return list1
-	}
-	list2.Next = mergeTwoLists_(list1.Next, list2)
-	return list2
 }

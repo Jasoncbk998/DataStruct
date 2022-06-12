@@ -15,26 +15,28 @@ type ListNode struct {
 输出：[7,0,8]
 解释：342 + 465 = 807.
 */
+// 递归,链表,数学
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	head := &ListNode{Val: 0}
+	result := &ListNode{Val: 0}
 	n1, n2, carry := 0, 0, 0
-	current := head
+	current := result
 	for l1 != nil || l2 != nil || carry != 0 {
-		if l1 == nil {
-			n1 = 0
-		} else {
+
+		if l1 != nil {
 			n1 = l1.Val
 			l1 = l1.Next
-		}
-		if l2 == nil {
-			n2 = 0
 		} else {
+			n1 = 0
+		}
+		if l2 != nil {
 			n2 = l2.Val
 			l2 = l2.Next
+		} else {
+			n2 = 0
 		}
 		current.Next = &ListNode{Val: (n1 + n2 + carry) % 10}
 		current = current.Next
 		carry = (n1 + n2 + carry) / 10
 	}
-	return current.Next
+	return result.Next
 }

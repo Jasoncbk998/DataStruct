@@ -12,6 +12,7 @@ func Sum2Number(arr []int, target int) []int {
 		if v, ok := maps[target-value]; ok {
 			return []int{v, idx}
 		}
+		// map 对应的key和value
 		maps[value] = idx
 	}
 	return nil
